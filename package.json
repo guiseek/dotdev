@@ -1,0 +1,13 @@
+{
+  "name": "@dev/source",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {},
+  "private": true,
+  "devDependencies": {
+    "@nx/angular": "^17.1.1",
+    "@nx/js": "17.1.1",
+    "@nx/workspace": "17.1.1",
+    "nx": "17.1.1"
+  }
+}
