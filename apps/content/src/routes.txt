@@ -1,1 +1,2 @@
+article-demo-for-tests.md
 injecao-de-dependencias-no-angular.md
