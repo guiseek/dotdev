@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@depub/core": ["packages/depub/util-core/src/index.ts"],
       "@dev/feature-shell": ["content/src/index.ts"]
     }
   },

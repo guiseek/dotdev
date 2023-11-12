@@ -1,0 +1,40 @@
+{
+  "name": "depub-util-core",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/depub/util-core/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/depub/util-core",
+        "main": "packages/depub/util-core/src/index.ts",
+        "tsConfig": "packages/depub/util-core/tsconfig.lib.json",
+        "assets": ["packages/depub/util-core/*.md"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs depub-util-core {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/depub/util-core/**/*.ts",
+          "packages/depub/util-core/package.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/depub/util-core/jest.config.ts"
+      }
+    }
+  },
+  "tags": ["type:util", "scope:depub", "side:server"]
+}
