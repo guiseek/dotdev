@@ -1,0 +1,7 @@
+<nav>
+  <ul>
+    <li *ngFor="let file of routes$ | async">
+      <a [routerLink]="[file.file]">{{ file.meta.title }}</a>
+    </li>
+  </ul>
+</nav>

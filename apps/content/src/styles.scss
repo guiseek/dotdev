@@ -7,4 +7,36 @@ body {
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ededed;
+  font-size: 1.2rem;
+  color: #121212;
+
+  a:link,
+  a:visited,
+  a:active {
+    color: #26d051;
+    
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+
+    &::after {
+      left: 0;
+      width: 0;
+      bottom: -4px;
+      height: 6px;
+      content: ' ';
+      position: absolute;
+      display: inline-block;
+      background-image: url(/assets/underline.svg);
+      background-position: center right;
+      transition: width 600ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    &:hover {
+      &::after {
+        width: 100%;
+      }
+    }
+  }
 }

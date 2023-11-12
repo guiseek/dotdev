@@ -4,20 +4,44 @@
   "projectType": "application",
   "prefix": "dev",
   "sourceRoot": "apps/content/src",
-  "tags": ["type:app", "scope:content", "side:client"],
+  "tags": [
+    "type:app",
+    "scope:content",
+    "side:client"
+  ],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "dependsOn": ["readContent"],
       "options": {
         "outputPath": "dist/apps/content/browser",
         "index": "apps/content/src/index.html",
-        "main": "apps/content/src/main.ts",
-        "polyfills": ["zone.js"],
+        "browser": "apps/content/src/main.ts",
+        "server": "apps/content/src/main.server.ts",
+        "prerender": {
+          "discoverRoutes": false,
+          "routesFile": "apps/content/src/routes.txt"
+        },
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/content/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/content/src/favicon.ico", "apps/content/src/assets"],
-        "styles": ["apps/content/src/styles.scss"],
+        "assets": [
+          "apps/content/src/favicon.ico",
+          "apps/content/src/assets",
+          {
+            "input": "assets",
+            "glob": "**/*.{md,json}",
+            "output": "assets"
+          }
+        ],
+        "styles": [
+          "apps/content/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -37,15 +61,15 @@
           "outputHashing": "all"
         },
         "development": {
-          "buildOptimizer": false,
           "optimization": false,
-          "vendorChunk": true,
           "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
+          "sourceMap": true
         }
       },
       "defaultConfiguration": "production"
+    },
+    "readContent": {
+      "command": "node tools/scripts/read-content.mjs"
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
@@ -67,14 +91,21 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/content/**/*.ts", "apps/content/**/*.html"]
+        "lintFilePatterns": [
+          "apps/content/**/*.ts",
+          "apps/content/**/*.html"
+        ]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/content/jest.config.ts"
       }
@@ -86,7 +117,9 @@
       }
     },
     "server": {
-      "dependsOn": ["build"],
+      "dependsOn": [
+        "build"
+      ],
       "executor": "@angular-devkit/build-angular:server",
       "options": {
         "outputPath": "dist/apps/content/server",
@@ -125,7 +158,9 @@
     "prerender": {
       "executor": "@angular-devkit/build-angular:prerender",
       "options": {
-        "routes": ["/"]
+        "routes": [
+          "/"
+        ]
       },
       "configurations": {
         "development": {

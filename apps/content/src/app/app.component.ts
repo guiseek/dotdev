@@ -1,12 +1,14 @@
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [RouterModule],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+  ],
   selector: 'dev-root',
-  template: `<h1>Welcome content</h1>
-    <router-outlet></router-outlet>`,
+  template: `<router-outlet></router-outlet>`,
   styles: [
     `
       :host {

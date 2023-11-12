@@ -1,0 +1,8 @@
+<header *ngIf="meta">
+  <h1>{{ meta.title }}</h1>
+  <p>{{ meta.description }}</p>
+
+  <em>{{ meta.author }}</em>
+</header>
+
+<article [innerHTML]="content"></article>
